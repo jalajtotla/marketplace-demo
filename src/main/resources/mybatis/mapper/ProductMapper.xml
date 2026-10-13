@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.marketplace.product.repository.ProductRepository">
+    <select id="getProductsByIsExpress" resultType="Product">
+        SELECT id, category_id, name, price, main_img, detail_img, stock, score, delivery_fee, is_express, is_express_fresh, is_express_global
+        FROM PRODUCT
+        WHERE id > #{startId}
+        LIMIT #{listSize}
+    </select>
+    <select id="getProductsByIsExpressFresh" resultType="Product">
+        SELECT id, category_id, name, price, main_img, detail_img, stock, score, delivery_fee, is_express, is_express_fresh, is_express_global
+        FROM PRODUCT
+        WHERE id > #{startId} AND is_express_fresh = #{isExpressFresh}
+        LIMIT #{listSize}
+    </select>
+    <select id="getProductsByIsExpressGlobal" resultType="Product">
+        SELECT id, category_id, name, price, main_img, detail_img, stock, score, delivery_fee, is_express, is_express_fresh, is_express_global
+        FROM PRODUCT
+        WHERE id > #{startId} AND is_express_global = #{isExpressGlobal}
+        LIMIT #{listSize}
+    </select>
+    <select id="getProductsByIsExpressAndIsExpressFresh" resultType="Product">
+        SELECT id, category_id, name, price, main_img, detail_img, stock, score, delivery_fee, is_express, is_express_fresh, is_express_global
+        FROM PRODUCT
+        WHERE id > #{startId} AND is_express_fresh = #{isExpressFresh}
+        LIMIT #{listSize}
+    </select>
+    <select id="getProductsByIsExpressAndIsExpressGlobal" resultType="Product">
+        SELECT id, category_id, name, price, main_img, detail_img, stock, score, delivery_fee, is_express, is_express_fresh, is_express_global
+        FROM PRODUCT
+        WHERE id > #{startId} AND is_express_global = #{isExpressGlobal}
+        LIMIT #{listSize}
+    </select>
+    <select id="getProductsByKeyword" resultType="Product">
+        SELECT id, category_id, name, price, main_img, detail_img, stock, score, delivery_fee, is_express, is_express_fresh, is_express_global
+        FROM PRODUCT
+        WHERE name LIKE CONCAT(#{keyword}, '%')
+    </select>
+    <select id="findByProductId" resultType="Product">
+        SELECT id, category_id, name, price, main_img, detail_img, stock, score, delivery_fee, is_express, is_express_fresh, is_express_global
+        FROM PRODUCT
+        WHERE id = #{id}
+    </select>
+</mapper>
